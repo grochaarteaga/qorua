@@ -23,9 +23,9 @@ const features = [
 ];
 
 const stats = [
-  { value: "140M+", label: "agent payments in 2025" },
-  { value: "$5T", label: "agentic commerce by 2030" },
-  { value: "57%", label: "devs with agents in production" },
+  { value: "140M+", label: "agent payments in 2025", source: "Nevermined" },
+  { value: "$5T", label: "agentic commerce by 2030", source: "McKinsey" },
+  { value: "57%", label: "devs with agents in production", source: "LangChain 2026" },
 ];
 
 export default async function Home() {
@@ -84,6 +84,7 @@ export default async function Home() {
             <div key={s.label} className="flex flex-col items-center gap-1">
               <span className="text-2xl font-bold text-white">{s.value}</span>
               <span className="text-xs text-zinc-500">{s.label}</span>
+              <span className="text-xs text-zinc-700">— {s.source}</span>
             </div>
           ))}
         </div>

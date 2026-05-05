@@ -72,7 +72,9 @@ export default function EarlyAccessForm({ initialCount }: { initialCount: number
         {status === "error" && (
           <p className="text-center text-sm text-red-400">{errorMsg}</p>
         )}
-        <p className="text-center text-xs text-zinc-600">No spam. No pitch deck. Just early access when it&apos;s ready.</p>
+        <p className="text-center text-xs text-zinc-600">
+          One email when the registry opens for registration. No newsletters, no pitch deck.
+        </p>
       </form>
     </div>
   );
