@@ -232,7 +232,7 @@ export default async function Home() {
             <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-full border-2 border-violet-500/40 bg-zinc-800">
               {/* Replace the src below with your actual photo URL */}
               <img
-                src="https://unavatar.io/twitter/Guiguirocket"
+                src="/founder.png"
                 alt="Guillermo Rocha"
                 className="h-full w-full object-cover"
               />
