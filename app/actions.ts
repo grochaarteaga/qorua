@@ -1,11 +1,35 @@
 "use server";
 
 import { Resend } from "resend";
+import { neon } from "@neondatabase/serverless";
 
-let signupCount = parseInt(process.env.SIGNUP_SEED ?? "0", 10);
+function db() {
+  if (!process.env.DATABASE_URL) return null;
+  return neon(process.env.DATABASE_URL);
+}
 
-export async function getSignupCount() {
-  return signupCount;
+async function ensureTable() {
+  const sql = db();
+  if (!sql) return;
+  await sql`
+    CREATE TABLE IF NOT EXISTS signups (
+      email TEXT PRIMARY KEY,
+      role  TEXT,
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    )
+  `;
+}
+
+export async function getSignupCount(): Promise<number> {
+  const sql = db();
+  if (!sql) return parseInt(process.env.SIGNUP_SEED ?? "0", 10);
+  try {
+    await ensureTable();
+    const [{ count }] = await sql`SELECT COUNT(*)::int AS count FROM signups`;
+    return count + parseInt(process.env.SIGNUP_SEED ?? "0", 10);
+  } catch {
+    return parseInt(process.env.SIGNUP_SEED ?? "0", 10);
+  }
 }
 
 export async function subscribeEmail(formData: FormData) {
@@ -16,7 +40,19 @@ export async function subscribeEmail(formData: FormData) {
     return { success: false, error: "Please enter a valid email." };
   }
 
-  signupCount += 1;
+  const sql = db();
+  if (sql) {
+    try {
+      await ensureTable();
+      await sql`
+        INSERT INTO signups (email, role)
+        VALUES (${email}, ${role})
+        ON CONFLICT (email) DO NOTHING
+      `;
+    } catch (err) {
+      console.error("DB error:", err);
+    }
+  }
 
   if (process.env.RESEND_API_KEY) {
     try {
@@ -34,5 +70,6 @@ export async function subscribeEmail(formData: FormData) {
     console.log(`[Qorua signup] email=${email} role=${role}`);
   }
 
-  return { success: true, count: signupCount };
+  const count = await getSignupCount();
+  return { success: true, count };
 }

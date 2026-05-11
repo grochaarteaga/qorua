@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://qorua.com"),
   title: "Qorua — The Registry for MCP Servers",
   description:
     "Find, trust, and pay for MCP servers. Register your server in 2 minutes. Get discovered by every AI agent looking for what you do.",
@@ -23,6 +24,13 @@ export const metadata: Metadata = {
     url: "https://qorua.com",
     siteName: "Qorua",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Qorua — The Registry for MCP Servers",
+    description:
+      "Find, trust, and pay for MCP servers. Register your server in 2 minutes.",
+    creator: "@Guiguirocket",
   },
 };
 
