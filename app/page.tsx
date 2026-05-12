@@ -54,6 +54,12 @@ export default async function Home() {
           Early access — MCP server registry
         </div>
 
+        {/* Pain stat — improvement 2 */}
+        <p className="mx-auto mb-6 text-lg font-semibold text-zinc-300">
+          19,000+ MCP servers.{" "}
+          <span className="text-red-400">Less than 5% earn a dollar.</span>
+        </p>
+
         <h1 className="mx-auto max-w-3xl text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl">
           Your MCP server is{" "}
           <span className="bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent">
@@ -63,7 +69,6 @@ export default async function Home() {
           Let&apos;s fix that.
         </h1>
 
-        {/* Improvement 4 — one-line product definition */}
         <p className="mx-auto mt-5 text-xl font-semibold text-white">
           Qorua is the directory for MCP servers.
         </p>
@@ -256,6 +261,72 @@ export default async function Home() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Comparison — improvement 1 */}
+      <section className="mx-auto max-w-5xl px-6 py-24">
+        <h2 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-violet-400">
+          How we compare
+        </h2>
+        <p className="mx-auto mb-16 max-w-xl text-center text-3xl font-semibold text-white">
+          Every other directory is free. That&apos;s the problem.
+        </p>
+        <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-zinc-800">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-zinc-800 bg-zinc-900">
+                <th className="px-6 py-4 text-left font-medium text-zinc-400">Feature</th>
+                <th className="px-6 py-4 text-center font-medium text-zinc-500">mcp.so</th>
+                <th className="px-6 py-4 text-center font-medium text-zinc-500">Smithery</th>
+                <th className="px-6 py-4 text-center font-semibold text-violet-400">Qorua</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                {
+                  feature: "Server discovery",
+                  mcpso: "✓",
+                  smithery: "✓",
+                  qorua: "✓",
+                },
+                {
+                  feature: "Quality verification",
+                  mcpso: "✗",
+                  smithery: "Partial",
+                  qorua: "✓",
+                },
+                {
+                  feature: "Usage-based trust score",
+                  mcpso: "✗",
+                  smithery: "✗",
+                  qorua: "✓",
+                },
+                {
+                  feature: "Built-in payments",
+                  mcpso: "✗",
+                  smithery: "✗",
+                  qorua: "✓",
+                },
+                {
+                  feature: "Per-call USDC settlement",
+                  mcpso: "✗",
+                  smithery: "✗",
+                  qorua: "✓",
+                },
+              ].map((row, i) => (
+                <tr
+                  key={row.feature}
+                  className={i % 2 === 0 ? "bg-zinc-950" : "bg-zinc-900/40"}
+                >
+                  <td className="px-6 py-4 text-zinc-300">{row.feature}</td>
+                  <td className="px-6 py-4 text-center text-zinc-500">{row.mcpso}</td>
+                  <td className="px-6 py-4 text-center text-zinc-500">{row.smithery}</td>
+                  <td className="px-6 py-4 text-center font-semibold text-violet-400">{row.qorua}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 

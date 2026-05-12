@@ -28,7 +28,7 @@ export default function EarlyAccessForm({ initialCount }: { initialCount: number
         <div className="text-2xl">✓</div>
         <p className="text-lg font-semibold text-emerald-400">You&apos;re on the list.</p>
         <p className="text-sm text-zinc-400">
-          {count > 1 ? `${count} developers waiting. ` : ""}
+          {count > 1 ? `${count} MCP developers on the waitlist. ` : ""}
           We&apos;ll reach out when early access opens.
         </p>
       </div>
@@ -40,7 +40,7 @@ export default function EarlyAccessForm({ initialCount }: { initialCount: number
       {count > 0 && (
         <p className="text-center text-sm text-zinc-400">
           <span className="font-semibold text-violet-400">{count}</span>{" "}
-          {count === 1 ? "developer" : "developers"} already waiting
+          MCP {count === 1 ? "developer" : "developers"} on the waitlist
         </p>
       )}
       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3">
